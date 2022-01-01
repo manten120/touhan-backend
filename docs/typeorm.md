@@ -53,7 +53,9 @@ primaryKey のカラム名が id のとき。
 
 [TypeORMのmigrationで作成されるテーブル名をカスタマイズする](https://qiita.com/techneconn/items/cd8b7c5a973771d46489)
 
+##
 
+- デフォルトでnot null
 
 
 

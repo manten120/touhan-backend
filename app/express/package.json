@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./dist/bin/www",
+    "start": "NODE_ENV=production node ./dist/bin/www",
     "dev": "ts-node-dev --poll --interval 1000 --respawn ./src/bin/www",
     "postinstall": "typesync && yarn install --ignore-scripts",
     "build": "tsc",
