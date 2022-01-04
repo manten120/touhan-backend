@@ -7,13 +7,13 @@ export class SectionNum {
     const isInteger = Number.isInteger(value); // valueがnumber型かつ整数ならtrue
 
     if (!isInteger) {
-      throw new Error('PartNumの値はnumber型の整数です');
+      throw new Error('SectionNumの値はnumber型の整数です');
     }
 
     const isWithinRange = value >= 0 && value <= 6;
 
     if (!isWithinRange) {
-      throw new Error('PartNumの値は最小値0、 最大値6です');
+      throw new Error('SectionNumの値は最小値0、 最大値6です');
     }
 
     this.value = value;
