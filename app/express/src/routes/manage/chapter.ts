@@ -9,30 +9,21 @@ const manageChapterRouter = express.Router();
 manageChapterRouter.get('/', (req: CustomReq, res, next) => {
   (async () => {
     const { chapterNum } = req.query;
-
     if (chapterNum === undefined) {
       return res.send('chapterNumがundefinedです');
     }
-
     const convertedChapterNum = convertStringToNumber(chapterNum);
-
-    const chapterData = await chapterApplicationService.find(convertedChapterNum);
-
-    return res.json(chapterData);
+    const chapterDTO = await chapterApplicationService.find(convertedChapterNum);
+    return res.json(chapterDTO);
   })().catch(next);
 });
 
-// manageChapterRouter.get('/all', (_req, res, next) => {
-//   (async () => {
-//     const chaptersTable = getConnection().getRepository(ChapterORMEntity);
-//     const chapters = await chaptersTable.find();
-//     const pairsOfChapterNumAndTitle = chapters.map((chapter) => ({
-//       chapterNum: chapter.num,
-//       chapterTitle: chapter.title,
-//     }));
-//     res.json(pairsOfChapterNumAndTitle);
-//   })().catch(next);
-// });
+manageChapterRouter.get('/all', (_req, res, next) => {
+  (async () => {
+    const arrayOfChapterDTO = await chapterApplicationService.findAll();
+    res.json(arrayOfChapterDTO);
+  })().catch(next);
+});
 
 manageChapterRouter.post('/', (req: CustomReq, res, next) => {
   (async () => {

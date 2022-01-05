@@ -2,7 +2,7 @@ import type { IChapterRepository } from '../../domain/models/chapter/IChapterRep
 import { ChapterNum } from '../../domain/models/chapter/ChapterNum';
 import type { IChapterFactory } from '../../domain/models/chapter/IChapterFactory';
 import { ChapterTitle } from '../../domain/models/chapter/ChapterTitle';
-import { ChapterData } from './ChapterData';
+import { ChapterDTO } from './ChapterDTO';
 
 export class ChapterApplicationService {
   private readonly chapterRepository: IChapterRepository;
@@ -37,9 +37,17 @@ export class ChapterApplicationService {
       throw new Error('chapterNumValueに対応するchapterが存在しません');
     }
 
-    const chapterData = new ChapterData(chapter);
+    const chapterDTO = new ChapterDTO(chapter);
 
-    return chapterData;
+    return chapterDTO;
+  };
+
+  findAll = async () => {
+    const chapters = await this.chapterRepository.findAll();
+
+    const arrayOfChapterDTO = chapters.map((chapter) => new ChapterDTO(chapter));
+
+    return arrayOfChapterDTO;
   };
 
   update = async (chapterNumValue: number, chapterTitleValue: string) => {
@@ -70,7 +78,7 @@ export class ChapterApplicationService {
     const chapter = await this.chapterRepository.find(chapterNum);
 
     if (!chapter) {
-      throw new Error('chapterNumValueに対応するchapterは存在しません')
+      throw new Error('chapterNumValueに対応するchapterは存在しません');
     }
 
     await this.chapterRepository.delete(chapter);

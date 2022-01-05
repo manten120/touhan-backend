@@ -36,6 +36,13 @@ export class ChapterRepository implements IChapterRepository {
     return chapter;
   };
 
+  findAll = async () => {
+    const chaptersTable = getConnection().getRepository(ChapterORMEntity);
+    const chaptersData = await chaptersTable.find();
+    const chapters = chaptersData.map((chapterData) => this.chapterFactory.create(chapterData.num, chapterData.title));
+    return chapters;
+  };
+
   // eslint-disable-next-line class-methods-use-this
   delete = async (chapter: Chapter) => {
     const chaptersTable = getConnection().getRepository(ChapterORMEntity);

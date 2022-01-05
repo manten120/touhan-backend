@@ -1,6 +1,6 @@
 import type { Chapter } from '../../domain/models/chapter/Chapter';
 
-export class ChapterData {
+export class ChapterDTO {
   readonly num: number;
 
   readonly title: string;
