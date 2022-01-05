@@ -1,4 +1,4 @@
-import express, { Request, Response, NextFunction, RequestHandler} from 'express';
+import express, { Request, Response, NextFunction, RequestHandler } from 'express';
 import createError from 'http-errors';
 import path from 'path';
 import cookieParser from 'cookie-parser';
@@ -7,7 +7,9 @@ import 'reflect-metadata';
 
 import { indexRouter } from './routes';
 import { userRouter } from './routes/user';
-import { editRouter } from './routes/edit';
+import { manageChapterRouter } from './routes/manage/chapter';
+import { manageTextRouter } from './routes/manage/text';
+import { manageQuestionRouter } from './routes/manage/question';
 
 import { notifyAdminOfError } from './adapter/notify';
 
@@ -26,8 +28,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 // ejsファイル内でbootstrapを "bootstrap/css/bootstrap.min.css" などのパスで読み込めるようにする
 app.use('/bootstrap', express.static(path.join(__dirname, '../node_modules/bootstrap/dist')) as RequestHandler);
 
+// ejsファイル内でbootstrapを "bootstrap/css/bootstrap.min.css" などのパスで読み込めるようにする
+app.use('/scripts', express.static(path.join(__dirname, '../dist/scripts')) as RequestHandler);
+
 app.use('/user', userRouter);
-app.use('/edit', editRouter);
+app.use('/manage/chapter', manageChapterRouter);
+app.use('/manage/text', manageTextRouter);
+app.use('/manage/question', manageQuestionRouter);
 app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
