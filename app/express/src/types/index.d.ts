@@ -15,7 +15,7 @@ export type Body = {
   topicTitle?: string;
   line?: number;
   textNum?: number;
-  text?: string;
+  textBody?: string;
   productId?: number;
 };
 

@@ -16,8 +16,8 @@ export const connectToDB = () =>
 export { UserORMEntity } from './entity/UserORMEntity';
 export { ChapterORMEntity } from './entity/ChapterORMEntity';
 export { PartORMEntity } from './entity/PartORMEntity';
-// export { SectionORMEntity } from './entity/SectionORMEntity';
-// export { SubsectionORMEntity } from './entity/SubsectionORMEntity';
-// export { TopicORMEntity } from './entity/TopicORMEntity';
-// export { TextORMEntity } from './entity/TextORMEntity';
-// export { ProductORMEntity } from './entity/ProductORMEntity';
+export { SectionORMEntity } from './entity/SectionORMEntity';
+export { SubsectionORMEntity } from './entity/SubsectionORMEntity';
+export { TopicORMEntity } from './entity/TopicORMEntity';
+export { TextORMEntity } from './entity/TextORMEntity';
+export { ProductORMEntity } from './entity/ProductORMEntity';

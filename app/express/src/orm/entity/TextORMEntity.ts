@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, ManyToOne, JoinColumn, PrimaryColumn } from 'typeorm';
 import { ChapterORMEntity } from './ChapterORMEntity';
 import { PartORMEntity } from './PartORMEntity';
 import { SectionORMEntity } from './SectionORMEntity';
@@ -8,10 +8,7 @@ import { ProductORMEntity } from './ProductORMEntity';
 
 @Entity('texts')
 export class TextORMEntity {
-  @PrimaryGeneratedColumn()
-  id?: number;
-
-  @Column()
+  @PrimaryColumn()
   chapter_num!: number;
 
   @Column()
@@ -26,14 +23,14 @@ export class TextORMEntity {
   @Column()
   topic_char!: string;
 
-  @Column()
+  @PrimaryColumn()
   line!: number;
 
-  @Column()
-  sentence!: number;
+  @PrimaryColumn()
+  text_num!: number;
 
   @Column()
-  text!: string;
+  text_body!: string;
 
   @Column()
   product_id!: number;
