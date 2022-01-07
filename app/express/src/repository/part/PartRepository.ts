@@ -25,7 +25,7 @@ export class PartRepository implements IPartRepository {
     await partsTable.save(partsData); // upsert
   };
 
-  find = async (chapterNum: ChapterNum, partNum: PartNum) => {
+  findOne = async (chapterNum: ChapterNum, partNum: PartNum) => {
     const partsTable = getConnection().getRepository(PartORMEntity);
     const partData = await partsTable.findOne({
       where: {

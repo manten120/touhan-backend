@@ -32,7 +32,7 @@ export class PartApplicationService {
 
     const chapterPromise = this.chapterRepository.findOne(chapterNum);
 
-    const partPromise = await this.partRepository.find(chapterNum, partNum);
+    const partPromise = await this.partRepository.findOne(chapterNum, partNum);
 
     const [chapter, part] = await Promise.all([chapterPromise, partPromise]);
 
@@ -49,11 +49,11 @@ export class PartApplicationService {
     await this.partRepository.save(newPart);
   };
 
-  find = async (chapterNumValue: number, partNumValue: number) => {
+  findOne = async (chapterNumValue: number, partNumValue: number) => {
     const chapterNum = new ChapterNum(chapterNumValue);
     const partNum = new PartNum(partNumValue);
 
-    const part = await this.partRepository.find(chapterNum, partNum);
+    const part = await this.partRepository.findOne(chapterNum, partNum);
 
     if (!part) {
       throw new Error('partNumValueに対応するpartが存在しません');
@@ -87,7 +87,7 @@ export class PartApplicationService {
 
     const chapterNum = new ChapterNum(chapterNumValue);
     const partNum = new PartNum(partNumValue);
-    const part = await this.partRepository.find(chapterNum, partNum);
+    const part = await this.partRepository.findOne(chapterNum, partNum);
 
     if (!part) {
       throw new Error('partNumValueに対応するpartが存在しません');
@@ -103,7 +103,7 @@ export class PartApplicationService {
   delete = async (chapterNumValue: number, partNumValue: number) => {
     const chapterNum = new ChapterNum(chapterNumValue);
     const partNum = new PartNum(partNumValue);
-    const part = await this.partRepository.find(chapterNum, partNum);
+    const part = await this.partRepository.findOne(chapterNum, partNum);
 
     if (!part) {
       throw new Error('partNumValueに対応するpartは存在しません');

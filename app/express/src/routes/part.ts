@@ -11,19 +11,19 @@ partRouter.get('/', (req: CustomReq, res, next) => {
     const { chapterNum, partNum } = req.query;
 
     if (chapterNum === undefined) {
-      res.status(400)
+      res.status(400);
       return res.send('chapterNumがundefinedです');
     }
 
     if (partNum === undefined) {
-      res.status(400)
+      res.status(400);
       return res.send('partNumがundefinedです');
     }
 
     const convertedChapterNum = convertStringToNumber(chapterNum);
     const convertedPartNum = convertStringToNumber(partNum);
 
-    const partDTO = await partApplicationService.find(convertedChapterNum, convertedPartNum);
+    const partDTO = await partApplicationService.findOne(convertedChapterNum, convertedPartNum);
 
     return res.json(partDTO);
   })().catch(next);
@@ -34,17 +34,17 @@ partRouter.post('/', (req: CustomReq, res, next) => {
     const { chapterNum, partNum, partTitle } = req.body;
 
     if (chapterNum === undefined) {
-      res.status(400)
+      res.status(400);
       return res.send('chapterNumがundefinedです');
     }
 
     if (partNum === undefined) {
-      res.status(400)
+      res.status(400);
       return res.send('partNumがundefinedです');
     }
 
     if (partTitle === undefined) {
-      res.status(400)
+      res.status(400);
       return res.send('partTitleがundefinedです');
     }
 
@@ -63,17 +63,17 @@ partRouter.put('/', (req: CustomReq, res, next) => {
     const { chapterNum, partNum, partTitle } = req.body;
 
     if (chapterNum === undefined) {
-      res.status(400)
+      res.status(400);
       return res.send('chapterNumがundefinedです');
     }
 
     if (partNum === undefined) {
-      res.status(400)
+      res.status(400);
       return res.send('partNumがundefinedです');
     }
 
     if (partTitle === undefined) {
-      res.status(400)
+      res.status(400);
       return res.send('partTitleがundefinedです');
     }
 
@@ -92,12 +92,12 @@ partRouter.delete('/', (req: CustomReq, res, next) => {
     const { chapterNum, partNum } = req.query;
 
     if (chapterNum === undefined) {
-      res.status(400)
+      res.status(400);
       return res.send('chapterNumがundefinedです');
     }
 
     if (partNum === undefined) {
-      res.status(400)
+      res.status(400);
       return res.send('partNumがundefinedです');
     }
 
