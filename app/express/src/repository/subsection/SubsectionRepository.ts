@@ -70,7 +70,7 @@ export class SubsectionRepository implements ISubsectionRepository {
       this.subsectionFactory.create({
         chapterNumValue: subsectionData.chapter_num,
         partNumValue: subsectionData.part_num,
-        sectionNumValue: subsectionData.chapter_num,
+        sectionNumValue: subsectionData.section_num,
         subsectionNumValue: subsectionData.num,
         subsectionTitleValue: subsectionData.title,
       })
@@ -94,7 +94,7 @@ export class SubsectionRepository implements ISubsectionRepository {
       this.subsectionFactory.create({
         chapterNumValue: subsectionData.chapter_num,
         partNumValue: subsectionData.part_num,
-        sectionNumValue: subsectionData.chapter_num,
+        sectionNumValue: subsectionData.section_num,
         subsectionNumValue: subsectionData.num,
         subsectionTitleValue: subsectionData.title,
       })
