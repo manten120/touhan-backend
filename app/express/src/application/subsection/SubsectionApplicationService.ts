@@ -70,7 +70,7 @@ export class SubsectionApplicationService {
       throw new Error('chapterNum, partNumValue, sectionNumに対応するsectionが存在しません');
     }
 
-    const newSubsection = this.subsectionFactory.create({
+    const subsection = this.subsectionFactory.create({
       chapterNumValue,
       partNumValue,
       sectionNumValue,
@@ -78,7 +78,7 @@ export class SubsectionApplicationService {
       subsectionTitleValue,
     });
 
-    await this.subsectionRepository.save(newSubsection);
+    await this.subsectionRepository.save(subsection);
   };
 
   findOne = async (argsObj: {
