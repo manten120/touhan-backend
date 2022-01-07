@@ -17,7 +17,7 @@ export class ChapterApplicationService {
   register = async (chapterNumValue: number, chapterTitleValue: string) => {
     const chapterNum = new ChapterNum(chapterNumValue);
 
-    const chapter = await this.chapterRepository.find(chapterNum);
+    const chapter = await this.chapterRepository.findOne(chapterNum);
 
     if (chapter) {
       throw new Error('chapterNumValueに対応するchapterが既に存在しています');
@@ -28,13 +28,13 @@ export class ChapterApplicationService {
     await this.chapterRepository.save(newChapter);
   };
 
-  find = async (chapterNumValue: number) => {
+  findOne = async (chapterNumValue: number) => {
     const chapterNum = new ChapterNum(chapterNumValue);
 
-    const chapter = await this.chapterRepository.find(chapterNum);
+    const chapter = await this.chapterRepository.findOne(chapterNum);
 
     if (!chapter) {
-      throw new Error('chapterNumValueに対応するchapterが存在しません');
+      return null;
     }
 
     const chapterDTO = new ChapterDTO(chapter);
@@ -52,7 +52,7 @@ export class ChapterApplicationService {
 
   update = async (chapterNumValue: number, chapterTitleValue: string) => {
     const chapterNum = new ChapterNum(chapterNumValue);
-    const chapter = await this.chapterRepository.find(chapterNum);
+    const chapter = await this.chapterRepository.findOne(chapterNum);
 
     if (!chapter) {
       throw new Error('chapterNumValueに対応するchapterが存在しません');
@@ -75,7 +75,7 @@ export class ChapterApplicationService {
 
   delete = async (chapterNumValue: number) => {
     const chapterNum = new ChapterNum(chapterNumValue);
-    const chapter = await this.chapterRepository.find(chapterNum);
+    const chapter = await this.chapterRepository.findOne(chapterNum);
 
     if (!chapter) {
       throw new Error('chapterNumValueに対応するchapterは存在しません');
