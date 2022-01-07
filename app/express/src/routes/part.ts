@@ -23,9 +23,9 @@ partRouter.get('/', (req: CustomReq, res, next) => {
     const convertedChapterNum = convertStringToNumber(chapterNum);
     const convertedPartNum = convertStringToNumber(partNum);
 
-    const partDTO = await partApplicationService.findOne(convertedChapterNum, convertedPartNum);
+    const result = await partApplicationService.findOne(convertedChapterNum, convertedPartNum);
 
-    return res.json(partDTO);
+    return res.json(result);
   })().catch(next);
 });
 

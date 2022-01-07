@@ -56,7 +56,7 @@ export class PartApplicationService {
     const part = await this.partRepository.findOne(chapterNum, partNum);
 
     if (!part) {
-      throw new Error('partNumValueに対応するpartが存在しません');
+      return null;
     }
 
     const partDTO = new PartDTO(part);
