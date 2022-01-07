@@ -17,7 +17,7 @@ export class InMemoryChapterRepository implements IChapterRepository {
     this.store.set(JSON.stringify(clonedChapter.num), clonedChapter);
   };
 
-  find = async (chapterNum: ChapterNum) => {
+  findOne = async (chapterNum: ChapterNum) => {
     const chapter = this.store.get(JSON.stringify(chapterNum));
 
     if (!chapter) {

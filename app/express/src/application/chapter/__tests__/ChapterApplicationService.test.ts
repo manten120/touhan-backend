@@ -34,7 +34,7 @@ describe('chapterApplicationService', () => {
 
     const chapterNameOfRegisteredChapter = new ChapterNum(chapterNumValue3);
 
-    const registeredChapter = await inMemoryChapterRepository.find(chapterNameOfRegisteredChapter);
+    const registeredChapter = await inMemoryChapterRepository.findOne(chapterNameOfRegisteredChapter);
 
     expect.assertions(3);
     expect(registeredChapter).not.toBeNull();
@@ -48,7 +48,7 @@ describe('chapterApplicationService', () => {
 
   it('.find()', async () => {
     const chapterNum1 = new ChapterNum(chapterNumValue1);
-    const storedChapter = await inMemoryChapterRepository.find(chapterNum1);
+    const storedChapter = await inMemoryChapterRepository.findOne(chapterNum1);
 
     expect.assertions(3);
     expect(storedChapter).not.toBeNull();
@@ -72,10 +72,10 @@ describe('chapterApplicationService', () => {
   it('.update()', async () => {
     const chapterTitleValue1After = '第1章の変更後のタイトル';
     await chapterApplicationService.update(chapterNumValue1, chapterTitleValue1After);
-    const updatedChapter1 = await chapterApplicationService.find(chapterNumValue1);
+    const updatedChapter1 = await chapterApplicationService.findOne(chapterNumValue1);
 
     expect.assertions(1);
-    expect(updatedChapter1.title).toBe(chapterTitleValue1After);
+    expect(updatedChapter1?.title).toBe(chapterTitleValue1After);
   });
 
   it('.update() 未登録の場合エラー', async () => {
@@ -90,12 +90,12 @@ describe('chapterApplicationService', () => {
     expect.assertions(2);
 
     const chapterNum1 = new ChapterNum(chapterNumValue1);
-    const storedChapter = await inMemoryChapterRepository.find(chapterNum1);
+    const storedChapter = await inMemoryChapterRepository.findOne(chapterNum1);
     expect(storedChapter).not.toBeNull();
 
     await chapterApplicationService.delete(chapterNumValue1);
 
-    const result = await inMemoryChapterRepository.find(chapterNum1);
+    const result = await inMemoryChapterRepository.findOne(chapterNum1);
     expect(result).toBeNull();
   });
 });
