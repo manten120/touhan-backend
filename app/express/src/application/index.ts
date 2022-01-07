@@ -10,6 +10,10 @@ import { SectionApplicationService } from './section/sectionApplicationService';
 import { SectionRepository } from '../repository/section/SectionRepositry';
 import { SectionFactory } from '../repository/section/SectionFactory';
 
+import { SubsectionApplicationService } from './subsection/SubsectionApplicationService';
+import { SubsectionRepository } from '../repository/subsection/SubsectionRepository';
+import { SubsectionFactory } from '../repository/subsection/SubsectionFactory';
+
 const chapterFactory = new ChapterFactory();
 const chapterRepository = new ChapterRepository(chapterFactory);
 
@@ -28,4 +32,15 @@ export const sectionApplicationService = new SectionApplicationService({
   partRepository,
   sectionRepository,
   sectionFactory,
+});
+
+const subsectionFactory = new SubsectionFactory();
+const subsectionRepository = new SubsectionRepository(subsectionFactory);
+
+export const subsectionApplicationService = new SubsectionApplicationService({
+  chapterRepository,
+  partRepository,
+  sectionRepository,
+  subsectionRepository,
+  subsectionFactory,
 });

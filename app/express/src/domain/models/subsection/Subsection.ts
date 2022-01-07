@@ -13,7 +13,7 @@ export class Subsection {
 
   readonly num: SubsectionNum;
 
-  readonly title: SubsectionTitle;
+  title: SubsectionTitle;
 
   constructor(argsObj: {
     chapterNum: ChapterNum;
@@ -32,4 +32,11 @@ export class Subsection {
     this.num = argsObj.subsectionNum;
     this.title = argsObj.subsectionTitle;
   }
+
+  readonly changeTitle = (subsectionTitle: SubsectionTitle) => {
+    if (this.num.value === 0 && subsectionTitle.value !== null) {
+      throw new Error('subsectionNumの値が0のとき、subsectionTitleの値はnullです');
+    }
+    this.title = subsectionTitle;
+  };
 }

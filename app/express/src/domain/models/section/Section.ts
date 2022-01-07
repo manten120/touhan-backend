@@ -29,7 +29,7 @@ export class Section {
   }
 
   readonly changeTitle = (sectionTitle: SectionTitle) => {
-    if (this.chapterNum.value === 0 && sectionTitle.value !== null) {
+    if (this.num.value === 0 && sectionTitle.value !== null) {
       throw new Error('SectionNumの値が0のとき、SectionTitleの値はnullです');
     }
     this.title = sectionTitle;

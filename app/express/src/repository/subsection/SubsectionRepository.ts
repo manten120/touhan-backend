@@ -8,7 +8,7 @@ import type { SectionNum } from '../../domain/models/section/SectionNum';
 import type { Subsection } from '../../domain/models/subsection/Subsection';
 import type { SubsectionNum } from '../../domain/models/subsection/SubsectionNum';
 
-export class subsectionRepository implements ISubsectionRepository {
+export class SubsectionRepository implements ISubsectionRepository {
   private readonly subsectionFactory: ISubsectionFactory;
 
   constructor(subsectionFactory: ISubsectionFactory) {
@@ -29,7 +29,7 @@ export class subsectionRepository implements ISubsectionRepository {
     await subsectionsTable.save(subsectionData);
   };
 
-  find = async (argsObj: {
+  findOne = async (argsObj: {
     chapterNum: ChapterNum;
     partNum: PartNum;
     sectionNum: SectionNum;
@@ -59,5 +59,62 @@ export class subsectionRepository implements ISubsectionRepository {
     });
 
     return subsection;
+  };
+
+  findAll = async () => {
+    const subsectionsTable = getConnection().getRepository(SubsectionORMEntity);
+
+    const subsectionsData = await subsectionsTable.find();
+
+    const subsections = subsectionsData.map((subsectionData) =>
+      this.subsectionFactory.create({
+        chapterNumValue: subsectionData.chapter_num,
+        partNumValue: subsectionData.part_num,
+        sectionNumValue: subsectionData.chapter_num,
+        subsectionNumValue: subsectionData.num,
+        subsectionTitleValue: subsectionData.title,
+      })
+    );
+
+    return subsections;
+  };
+
+  findBySection = async (argsObj: { chapterNum: ChapterNum; partNum: PartNum; sectionNum: SectionNum }) => {
+    const subsectionsTable = getConnection().getRepository(SubsectionORMEntity);
+
+    const subsectionsData = await subsectionsTable.find({
+      where: {
+        chapter_num: argsObj.chapterNum.value,
+        part_num: argsObj.partNum.value,
+        section_num: argsObj.sectionNum.value,
+      },
+    });
+
+    const subsections = subsectionsData.map((subsectionData) =>
+      this.subsectionFactory.create({
+        chapterNumValue: subsectionData.chapter_num,
+        partNumValue: subsectionData.part_num,
+        sectionNumValue: subsectionData.chapter_num,
+        subsectionNumValue: subsectionData.num,
+        subsectionTitleValue: subsectionData.title,
+      })
+    );
+
+    return subsections;
+  };
+
+  // eslint-disable-next-line class-methods-use-this
+  delete = async (subsection: Subsection) => {
+    const subsectionsTable = getConnection().getRepository(SubsectionORMEntity);
+
+    const result = await subsectionsTable.delete({
+      chapter_num: subsection.chapterNum.value,
+      part_num: subsection.partNum.value,
+      section_num: subsection.sectionNum.value,
+      num: subsection.num.value,
+    });
+    if (!result) {
+      throw new Error('削除しようとしたsubsectionは存在しません');
+    }
   };
 }

@@ -6,10 +6,17 @@ import type { SubsectionNum } from './SubsectionNum';
 
 export interface ISubsectionRepository {
   save: (subsection: Subsection) => Promise<void>;
-  find: (argsObj: {
+  findOne: (argsObj: {
     chapterNum: ChapterNum;
     partNum: PartNum;
     sectionNum: SectionNum;
     subsectionNum: SubsectionNum;
   }) => Promise<Subsection | null>;
+  findAll: () => Promise<Subsection[]>;
+  findBySection: (argsObj: {
+    chapterNum: ChapterNum;
+    partNum: PartNum;
+    sectionNum: SectionNum;
+  }) => Promise<Subsection[]>;
+  delete: (subsection: Subsection) => Promise<void>;
 }

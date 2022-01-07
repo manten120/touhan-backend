@@ -8,11 +8,11 @@ export type Body = {
   partNum?: number;
   partTitle?: string;
   sectionNum?: number;
-  sectionTitle?: string;
+  sectionTitle?: string | null;
   subsectionNum?: number;
-  subsectionTitle?: string;
+  subsectionTitle?:  string | null;
   topicChar?: string;
-  topicTitle?: string;
+  topicTitle?: string | null;
   line?: number;
   textNum?: number;
   textBody?: string;
@@ -25,6 +25,7 @@ export type Query = {
   chapterNum?: string;
   partNum?: string;
   sectionNum?: string;
+  subsectionNum?: string;
 };
 
 export interface CustomReq extends Request {
