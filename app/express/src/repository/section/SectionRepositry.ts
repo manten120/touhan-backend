@@ -27,7 +27,7 @@ export class SectionRepository implements ISectionRepository {
     await sectionsTable.save(sectionData);
   };
 
-  find = async (argsObj: { chapterNum: ChapterNum; partNum: PartNum; sectionNum: SectionNum }) => {
+  findOne = async (argsObj: { chapterNum: ChapterNum; partNum: PartNum; sectionNum: SectionNum }) => {
     const sectionsTable = getConnection().getRepository(SectionORMEntity);
 
     const sectionData = await sectionsTable.findOne({
@@ -50,5 +50,58 @@ export class SectionRepository implements ISectionRepository {
     });
 
     return section;
+  };
+
+  findAll = async () => {
+    const sectionsTable = getConnection().getRepository(SectionORMEntity);
+
+    const sectionsData = await sectionsTable.find();
+
+    const sections = sectionsData.map((sectionData) =>
+      this.sectionFactory.create({
+        chapterNumValue: sectionData.chapter_num,
+        partNumValue: sectionData.part_num,
+        sectionNumValue: sectionData.num,
+        sectionTitleValue: sectionData.title,
+      })
+    );
+
+    return sections;
+  };
+
+  findByPart = async (chapterNum: ChapterNum, partNum: PartNum) => {
+    const sectionsTable = getConnection().getRepository(SectionORMEntity);
+
+    const sectionsData = await sectionsTable.find({
+      where: {
+        chapter_num: chapterNum.value,
+        part_num: partNum.value,
+      },
+    });
+
+    const sections = sectionsData.map((sectionData) =>
+      this.sectionFactory.create({
+        chapterNumValue: sectionData.chapter_num,
+        partNumValue: sectionData.part_num,
+        sectionNumValue: sectionData.num,
+        sectionTitleValue: sectionData.title,
+      })
+    );
+
+    return sections;
+  };
+
+  // eslint-disable-next-line class-methods-use-this
+  delete = async (section: Section) => {
+    const sectionsTable = getConnection().getRepository(SectionORMEntity);
+
+    const result = await sectionsTable.delete({
+      chapter_num: section.chapterNum.value,
+      part_num: section.partNum.value,
+      num: section.num.value,
+    });
+    if (!result) {
+      throw new Error('削除しようとしたsectionは存在しません');
+    }
   };
 }

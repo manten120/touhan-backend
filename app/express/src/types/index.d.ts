@@ -24,6 +24,7 @@ export type Query = {
   textId?: string;
   chapterNum?: string;
   partNum?: string;
+  sectionNum?: string;
 };
 
 export interface CustomReq extends Request {

@@ -5,5 +5,8 @@ import type { SectionNum } from './SectionNum';
 
 export interface ISectionRepository {
   save: (section: Section) => Promise<void>;
-  find: (argsObj: { chapterNum: ChapterNum; partNum: PartNum; sectionNum: SectionNum }) => Promise<Section | null>;
+  findOne: (argsObj: { chapterNum: ChapterNum; partNum: PartNum; sectionNum: SectionNum }) => Promise<Section | null>;
+  findAll: () => Promise<Section[]>;
+  findByPart: (chapterNum: ChapterNum, partNum: PartNum) => Promise<Section[]>;
+  delete: (section: Section) => Promise<void>;
 }

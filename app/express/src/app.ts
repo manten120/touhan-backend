@@ -12,6 +12,8 @@ import { chapterRouter } from './routes/chapter';
 import { chaptersRouter } from './routes/chapters';
 import { partRouter } from './routes/part';
 import { partsRouter } from './routes/parts';
+import { sectionRouter } from './routes/section';
+import { sectionsRouter } from './routes/sections';
 import { textRouter } from './routes/text';
 
 import { notifyAdminOfError } from './adapter/notify';
@@ -39,6 +41,8 @@ app.use('/chapter', chapterRouter);
 app.use('/chapters', chaptersRouter);
 app.use('/part', partRouter);
 app.use('/parts', partsRouter);
+app.use('/section', sectionRouter);
+app.use('/sections', sectionsRouter);
 app.use('/text', textRouter);
 
 app.use('/', indexRouter);
