@@ -2,11 +2,11 @@ import express from 'express';
 import { getConnection } from 'typeorm';
 
 import { UserORMEntity } from '../orm';
-import type { GetReq, PostReq } from '../types';
+import type { CustomReq } from '../types';
 
-const router = express.Router();
+const userRouter = express.Router();
 
-router.get('/', (req: GetReq, res, next) => {
+userRouter.get('/', (req: CustomReq, res, next) => {
   (async () => {
     const { id } = req.query;
 
@@ -25,7 +25,7 @@ router.get('/', (req: GetReq, res, next) => {
   })().catch(next);
 });
 
-router.post('/', (req: PostReq, res, next) => {
+userRouter.post('/', (req: CustomReq, res, next) => {
   (async () => {
     const { firstName, lastName } = req.body;
 
@@ -50,4 +50,4 @@ router.post('/', (req: PostReq, res, next) => {
   })().catch(next);
 });
 
-export { router as userRouter };
+export { userRouter };
