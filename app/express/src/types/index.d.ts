@@ -23,6 +23,7 @@ export type Query = {
   id?: string;
   textId?: string;
   chapterNum?: string;
+  partNum?: string;
 };
 
 export interface CustomReq extends Request {

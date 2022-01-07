@@ -13,17 +13,17 @@ export class SectionORMEntity {
   @PrimaryColumn()
   part_num!: number;
 
-  @Column({nullable: true})
-  title!: string;
+  @Column({ nullable: true, type: 'varchar' })
+  title!: string | null;
 
   @ManyToOne(() => ChapterORMEntity)
-  @JoinColumn({ name: 'chapter_num', referencedColumnName: 'num'})
-  chapter!: ChapterORMEntity
+  @JoinColumn({ name: 'chapter_num', referencedColumnName: 'num' })
+  chapter!: ChapterORMEntity;
 
   @ManyToOne(() => PartORMEntity)
   @JoinColumn([
     { name: 'part_num', referencedColumnName: 'num' },
     { name: 'chapter_num', referencedColumnName: 'chapter_num' },
   ])
-  part!: PartORMEntity
+  part!: PartORMEntity;
 }
