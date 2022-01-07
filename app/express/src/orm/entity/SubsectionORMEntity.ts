@@ -17,8 +17,8 @@ export class SubsectionORMEntity {
   @PrimaryColumn()
   section_num!: number;
 
-  @Column()
-  title!: string;
+  @Column({ nullable: true, type: 'varchar' })
+  title!: string | null;
 
   @ManyToOne(() => ChapterORMEntity)
   @JoinColumn({ name: 'chapter_num', referencedColumnName: 'num' })
@@ -33,7 +33,7 @@ export class SubsectionORMEntity {
 
   @ManyToOne(() => SectionORMEntity)
   @JoinColumn([
-    { name: 'section_num', referencedColumnName: 'num'},
+    { name: 'section_num', referencedColumnName: 'num' },
     { name: 'chapter_num', referencedColumnName: 'chapter_num' },
     { name: 'part_num', referencedColumnName: 'part_num' },
   ])
