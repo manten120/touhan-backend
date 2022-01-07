@@ -27,10 +27,10 @@ export class TextORMEntity {
   line!: number;
 
   @PrimaryColumn()
-  text_num!: number;
+  num!: number;
 
   @Column()
-  text_body!: string;
+  body!: string;
 
   @Column()
   product_id!: number;

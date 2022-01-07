@@ -1,9 +1,7 @@
 export class TextNum {
   readonly value: number;
 
-  constructor(argsObj: { value: number }) {
-    const { value } = argsObj;
-
+  constructor(value: number) {
     const isInteger = Number.isInteger(value); // valueがnumber型かつ整数ならtrue
 
     if (!isInteger) {

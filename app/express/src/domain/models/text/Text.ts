@@ -1,47 +1,46 @@
-import { ChapterNum } from '../chapter/ChapterNum';
-import { PartNum } from '../part/PartNum';
-import { SectionNum } from '../section/SectionNum';
-import { SubsectionNum } from '../subsection/SubsectionNum';
-import { TopicChar } from '../topic/TopicChar';
+import { Chapter } from '../chapter/Chapter';
+import { Part } from '../part/Part';
+import { Section } from '../section/Section';
+import { Subsection } from '../subsection/Subsection';
+import { Topic } from '../topic/Topic';
 import { Line } from './Line';
 import { TextNum } from './TextNum';
 import { TextBody } from './TextBody';
 
-
 export class Text {
-  readonly chapterNum: ChapterNum;
+  readonly chapter: Chapter;
 
-  readonly partNum: PartNum;
+  readonly part: Part;
 
-  readonly sectionNum: SectionNum;
+  readonly section: Section;
 
-  readonly subsectionNum: SubsectionNum;
+  readonly subsection: Subsection;
 
-  readonly topicChar: TopicChar;
+  readonly topic: Topic;
 
   readonly line: Line;
 
-  readonly textNum: TextNum;
+  readonly num: TextNum;
 
-  readonly textBody: TextBody;
+  readonly body: TextBody;
 
   constructor(argsObj: {
-    chapterNum: ChapterNum;
-    partNum: PartNum;
-    sectionNum: SectionNum;
-    subsectionNum: SubsectionNum;
-    topicChar: TopicChar;
+    chapter: Chapter;
+    part: Part;
+    section: Section;
+    subsection: Subsection;
+    topic: Topic;
     line: Line;
     textNum: TextNum;
     textBody: TextBody;
   }) {
-    this.chapterNum = argsObj.chapterNum;
-    this.partNum = argsObj.partNum;
-    this.sectionNum = argsObj.sectionNum;
-    this.subsectionNum = argsObj.subsectionNum;
-    this.topicChar = argsObj.topicChar;
+    this.chapter = argsObj.chapter;
+    this.part = argsObj.part;
+    this.section = argsObj.section;
+    this.subsection = argsObj.subsection;
+    this.topic = argsObj.topic;
     this.line = argsObj.line;
-    this.textNum = argsObj.textNum;
-    this.textBody = argsObj.textBody;
+    this.num = argsObj.textNum;
+    this.body = argsObj.textBody;
   }
 }
