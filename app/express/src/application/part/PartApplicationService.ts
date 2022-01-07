@@ -30,7 +30,7 @@ export class PartApplicationService {
 
     const partNum = new PartNum(partNumValue);
 
-    const chapterPromise = this.chapterRepository.find(chapterNum);
+    const chapterPromise = this.chapterRepository.findOne(chapterNum);
 
     const partPromise = await this.partRepository.find(chapterNum, partNum);
 
