@@ -23,7 +23,7 @@ export class ChapterRepository implements IChapterRepository {
     await chaptersTable.save(chapterData); // upsert
   };
 
-  find = async (chapterNum: ChapterNum) => {
+  findOne = async (chapterNum: ChapterNum) => {
     const chaptersTable = getConnection().getRepository(ChapterORMEntity);
     const chapterData = await chaptersTable.findOne({ where: { num: chapterNum.value } });
 
