@@ -26,6 +26,7 @@ export type Query = {
   partNum?: string;
   sectionNum?: string;
   subsectionNum?: string;
+  topicChar?: string;
 };
 
 export interface CustomReq extends Request {

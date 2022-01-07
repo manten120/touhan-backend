@@ -16,6 +16,8 @@ import { sectionRouter } from './routes/section';
 import { sectionsRouter } from './routes/sections';
 import { subsectionRouter } from './routes/subsection';
 import { subsectionsRouter } from './routes/subsections';
+import { topicRouter } from './routes/topic';
+import { topicsRouter } from './routes/topics';
 import { textRouter } from './routes/text';
 
 import { notifyAdminOfError } from './adapter/notify';
@@ -47,6 +49,8 @@ app.use('/section', sectionRouter);
 app.use('/sections', sectionsRouter);
 app.use('/subsection', subsectionRouter);
 app.use('/subsections', subsectionsRouter);
+app.use('/topic', topicRouter);
+app.use('/topics', topicsRouter);
 app.use('/text', textRouter);
 
 app.use('/', indexRouter);

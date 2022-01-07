@@ -13,6 +13,9 @@ import { SectionFactory } from '../repository/section/SectionFactory';
 import { SubsectionApplicationService } from './subsection/SubsectionApplicationService';
 import { SubsectionRepository } from '../repository/subsection/SubsectionRepository';
 import { SubsectionFactory } from '../repository/subsection/SubsectionFactory';
+import { TopicFactory } from '../repository/topic/TopicFactory';
+import { TopicRepository } from '../repository/topic/TopicRepository';
+import { TopicApplicationService } from './topic/TopicApplicationService';
 
 const chapterFactory = new ChapterFactory();
 const chapterRepository = new ChapterRepository(chapterFactory);
@@ -43,4 +46,16 @@ export const subsectionApplicationService = new SubsectionApplicationService({
   sectionRepository,
   subsectionRepository,
   subsectionFactory,
+});
+
+const topicFactory = new TopicFactory();
+const topicRepository = new TopicRepository(topicFactory);
+
+export const topicApplicationService = new TopicApplicationService({
+  chapterRepository,
+  partRepository,
+  sectionRepository,
+  subsectionRepository,
+  topicRepository,
+  topicFactory,
 });

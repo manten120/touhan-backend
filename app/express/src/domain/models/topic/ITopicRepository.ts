@@ -7,11 +7,23 @@ import type { Topic } from './Topic';
 
 export interface ITopicRepository {
   save: (topic: Topic) => Promise<void>;
-  find: (argsObj: {
+
+  findOne: (argsObj: {
     chapterNum: ChapterNum;
     partNum: PartNum;
     sectionNum: SectionNum;
     subsectionNum: SubsectionNum;
     topicChar: TopicChar;
   }) => Promise<Topic | null>;
+
+  findAll: () => Promise<Topic[]>;
+
+  findBySubsection: (argsObj: {
+    chapterNum: ChapterNum;
+    partNum: PartNum;
+    sectionNum: SectionNum;
+    subsectionNum: SubsectionNum;
+  }) => Promise<Topic[]>;
+
+  delete: (topic: Topic) => Promise<void>;
 }

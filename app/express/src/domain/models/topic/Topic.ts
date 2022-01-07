@@ -16,7 +16,7 @@ export class Topic {
 
   readonly char: TopicChar;
 
-  readonly title: TopicTitle;
+  title: TopicTitle;
 
   constructor(argsObj: {
     chapterNum: ChapterNum;
@@ -37,4 +37,11 @@ export class Topic {
     this.char = argsObj.topicChar;
     this.title = argsObj.topicTitle;
   }
+
+  readonly changeTitle = (topicTitle: TopicTitle) => {
+    if (this.char.value === 'z' && topicTitle.value !== null) {
+      throw new Error('TopicCharの値が0のとき、TopicTitleの値はnullです');
+    }
+    this.title = topicTitle;
+  };
 }

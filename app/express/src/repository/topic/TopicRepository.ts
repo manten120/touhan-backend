@@ -9,7 +9,7 @@ import type { SubsectionNum } from '../../domain/models/subsection/SubsectionNum
 import type { TopicChar } from '../../domain/models/topic/TopicChar';
 import type { Topic } from '../../domain/models/topic/Topic';
 
-export class topicRepository implements ITopicRepository {
+export class TopicRepository implements ITopicRepository {
   private readonly topicFactory: ITopicFactory;
 
   constructor(topicFactory: ITopicFactory) {
@@ -31,7 +31,7 @@ export class topicRepository implements ITopicRepository {
     await topicsTable.save(topicData);
   };
 
-  find = async (argsObj: {
+  findOne = async (argsObj: {
     chapterNum: ChapterNum;
     partNum: PartNum;
     sectionNum: SectionNum;
@@ -64,5 +64,71 @@ export class topicRepository implements ITopicRepository {
     });
 
     return topic;
+  };
+
+  findAll = async () => {
+    const topicsTable = getConnection().getRepository(TopicORMEntity);
+
+    const topicsData = await topicsTable.find();
+
+    const topics = topicsData.map((topicData) =>
+      this.topicFactory.create({
+        chapterNumValue: topicData.chapter_num,
+        partNumValue: topicData.part_num,
+        sectionNumValue: topicData.section_num,
+        subsectionNumValue: topicData.subsection_num,
+        topicCharValue: topicData.char,
+        topicTitleValue: topicData.title,
+      })
+    );
+
+    return topics;
+  };
+
+  findBySubsection = async (argsObj: {
+    chapterNum: ChapterNum;
+    partNum: PartNum;
+    sectionNum: SectionNum;
+    subsectionNum: SubsectionNum;
+  }) => {
+    const topicsTable = getConnection().getRepository(TopicORMEntity);
+
+    const topicsData = await topicsTable.find({
+      where: {
+        chapter_num: argsObj.chapterNum.value,
+        part_num: argsObj.partNum.value,
+        section_num: argsObj.sectionNum.value,
+        subsection_num: argsObj.subsectionNum.value,
+      },
+    });
+
+    const topics = topicsData.map((topicData) =>
+      this.topicFactory.create({
+        chapterNumValue: topicData.chapter_num,
+        partNumValue: topicData.part_num,
+        sectionNumValue: topicData.section_num,
+        subsectionNumValue: topicData.subsection_num,
+        topicCharValue: topicData.char,
+        topicTitleValue: topicData.title,
+      })
+    );
+
+    return topics;
+  };
+
+  // eslint-disable-next-line class-methods-use-this
+  delete = async (topic: Topic) => {
+    const topicsTable = getConnection().getRepository(TopicORMEntity);
+
+    const result = await topicsTable.delete({
+      chapter_num: topic.chapterNum.value,
+      part_num: topic.partNum.value,
+      section_num: topic.sectionNum.value,
+      subsection_num: topic.subsectionNum.value,
+      char: topic.char.value,
+    });
+    if (!result) {
+      throw new Error('削除しようとしたsubsectionは存在しません');
+    }
   };
 }
