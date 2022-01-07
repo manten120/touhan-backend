@@ -72,6 +72,16 @@ export class PartApplicationService {
     return arrayOfPartDTO;
   };
 
+  findByChapterNum = async (chapterNumValue: number) => {
+    const chapterNum = new ChapterNum(chapterNumValue);
+
+    const parts = await this.partRepository.findByChapterNum(chapterNum);
+
+    const arrayOfPartDTO = parts.map((part) => new PartDTO(part));
+
+    return arrayOfPartDTO;
+  };
+
   update = async (argsObj: { chapterNumValue: number; partNumValue: number; partTitleValue: string }) => {
     const { chapterNumValue, partNumValue, partTitleValue } = argsObj;
 

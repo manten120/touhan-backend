@@ -60,6 +60,21 @@ export class PartRepository implements IPartRepository {
     return parts;
   };
 
+  findByChapterNum = async (chapterNum: ChapterNum) => {
+    const partsTable = getConnection().getRepository(PartORMEntity);
+    const partsData = await partsTable.find({
+      where: { chapter_num: chapterNum.value },
+    });
+    const parts = partsData.map((partData) =>
+      this.partFactory.create({
+        chapterNumValue: partData.chapter_num,
+        partNumValue: partData.num,
+        partTitleValue: partData.title,
+      })
+    );
+    return parts;
+  };
+
   // eslint-disable-next-line class-methods-use-this
   delete = async (part: Part) => {
     const partsTable = getConnection().getRepository(PartORMEntity);

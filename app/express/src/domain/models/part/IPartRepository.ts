@@ -6,5 +6,6 @@ export interface IPartRepository {
   save: (part: Part) => Promise<void>;
   find: (chapterNum: ChapterNum, partNum: PartNum) => Promise<Part | null>;
   findAll: () => Promise<Part[]>;
+  findByChapterNum: (chapterNum: ChapterNum) => Promise<Part[]>;
   delete: (part: Part) => Promise<void>;
 }
