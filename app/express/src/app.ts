@@ -8,6 +8,7 @@ import 'reflect-metadata';
 import { indexRouter } from './routes';
 import { userRouter } from './routes/user';
 import { manageChapterRouter } from './routes/manage/chapter';
+import { managePartRouter } from './routes/manage/part';
 import { manageTextRouter } from './routes/manage/text';
 import { manageQuestionRouter } from './routes/manage/question';
 
@@ -33,6 +34,7 @@ app.use('/scripts', express.static(path.join(__dirname, '../dist/scripts')) as R
 
 app.use('/user', userRouter);
 app.use('/manage/chapter', manageChapterRouter);
+app.use('/manage/part', managePartRouter);
 app.use('/manage/text', manageTextRouter);
 app.use('/manage/question', manageQuestionRouter);
 app.use('/', indexRouter);
