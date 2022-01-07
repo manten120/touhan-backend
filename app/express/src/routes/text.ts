@@ -9,13 +9,13 @@ import {
   SubsectionORMEntity,
   TopicORMEntity,
   TextORMEntity,
-} from '../../orm';
+} from '../orm';
 
-import type { CustomReq } from '../../types';
+import type { CustomReq } from '../types';
 
-const manageTextRouter = express.Router();
+const textRouter = express.Router();
 
-manageTextRouter.post('/', (req: CustomReq, res, next) => {
+textRouter.post('/', (req: CustomReq, res, next) => {
   (async () => {
     const {
       chapterNum,
@@ -168,4 +168,4 @@ manageTextRouter.post('/', (req: CustomReq, res, next) => {
   })().catch(next);
 });
 
-export { manageTextRouter };
+export { textRouter };

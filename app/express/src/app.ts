@@ -7,10 +7,12 @@ import 'reflect-metadata';
 
 import { indexRouter } from './routes';
 import { userRouter } from './routes/user';
-import { manageChapterRouter } from './routes/manage/chapter';
-import { managePartRouter } from './routes/manage/part';
-import { manageTextRouter } from './routes/manage/text';
-import { manageQuestionRouter } from './routes/manage/question';
+
+import { chapterRouter } from './routes/chapter';
+import { chaptersRouter } from './routes/chapters';
+import { partRouter } from './routes/part';
+import { partsRouter } from './routes/parts';
+import { textRouter } from './routes/text';
 
 import { notifyAdminOfError } from './adapter/notify';
 
@@ -33,10 +35,12 @@ app.use('/bootstrap', express.static(path.join(__dirname, '../node_modules/boots
 app.use('/scripts', express.static(path.join(__dirname, '../dist/scripts')) as RequestHandler);
 
 app.use('/user', userRouter);
-app.use('/manage/chapter', manageChapterRouter);
-app.use('/manage/part', managePartRouter);
-app.use('/manage/text', manageTextRouter);
-app.use('/manage/question', manageQuestionRouter);
+app.use('/chapter', chapterRouter);
+app.use('/chapters', chaptersRouter);
+app.use('/part', partRouter);
+app.use('/parts', partsRouter);
+app.use('/text', textRouter);
+
 app.use('/', indexRouter);
 
 // catch 404 and forward to error handler

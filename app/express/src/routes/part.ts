@@ -1,20 +1,22 @@
 /* eslint-disable no-unused-vars */
 import express from 'express';
-import { partApplicationService } from '../../application';
-import { convertStringToNumber } from '../../utility/functions/convertStringToNumber';
-import type { CustomReq } from '../../types';
+import { partApplicationService } from '../application';
+import { convertStringToNumber } from '../utility/functions/convertStringToNumber';
+import type { CustomReq } from '../types';
 
-const managePartRouter = express.Router();
+const partRouter = express.Router();
 
-managePartRouter.get('/', (req: CustomReq, res, next) => {
+partRouter.get('/', (req: CustomReq, res, next) => {
   (async () => {
     const { chapterNum, partNum } = req.query;
 
     if (chapterNum === undefined) {
+      res.status(400)
       return res.send('chapterNumがundefinedです');
     }
 
     if (partNum === undefined) {
+      res.status(400)
       return res.send('partNumがundefinedです');
     }
 
@@ -27,26 +29,22 @@ managePartRouter.get('/', (req: CustomReq, res, next) => {
   })().catch(next);
 });
 
-managePartRouter.get('/all', (_req, res, next) => {
-  (async () => {
-    const arrayOfPartDTO = await partApplicationService.findAll();
-    res.json(arrayOfPartDTO);
-  })().catch(next);
-});
-
-managePartRouter.post('/', (req: CustomReq, res, next) => {
+partRouter.post('/', (req: CustomReq, res, next) => {
   (async () => {
     const { chapterNum, partNum, partTitle } = req.body;
 
     if (chapterNum === undefined) {
+      res.status(400)
       return res.send('chapterNumがundefinedです');
     }
 
     if (partNum === undefined) {
+      res.status(400)
       return res.send('partNumがundefinedです');
     }
 
     if (partTitle === undefined) {
+      res.status(400)
       return res.send('partTitleがundefinedです');
     }
 
@@ -60,19 +58,22 @@ managePartRouter.post('/', (req: CustomReq, res, next) => {
   })().catch(next);
 });
 
-managePartRouter.put('/', (req: CustomReq, res, next) => {
+partRouter.put('/', (req: CustomReq, res, next) => {
   (async () => {
     const { chapterNum, partNum, partTitle } = req.body;
 
     if (chapterNum === undefined) {
+      res.status(400)
       return res.send('chapterNumがundefinedです');
     }
 
     if (partNum === undefined) {
+      res.status(400)
       return res.send('partNumがundefinedです');
     }
 
     if (partTitle === undefined) {
+      res.status(400)
       return res.send('partTitleがundefinedです');
     }
 
@@ -86,15 +87,17 @@ managePartRouter.put('/', (req: CustomReq, res, next) => {
   })().catch(next);
 });
 
-managePartRouter.delete('/', (req: CustomReq, res, next) => {
+partRouter.delete('/', (req: CustomReq, res, next) => {
   (async () => {
     const { chapterNum, partNum } = req.query;
 
     if (chapterNum === undefined) {
+      res.status(400)
       return res.send('chapterNumがundefinedです');
     }
 
     if (partNum === undefined) {
+      res.status(400)
       return res.send('partNumがundefinedです');
     }
 
@@ -107,4 +110,4 @@ managePartRouter.delete('/', (req: CustomReq, res, next) => {
   })().catch(next);
 });
 
-export { managePartRouter };
+export { partRouter };
