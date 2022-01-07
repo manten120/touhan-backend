@@ -5,7 +5,7 @@ import { SubsectionNum } from '../subsection/SubsectionNum';
 import { TopicChar } from './TopicChar';
 import { TopicTitle } from './TopicTitle';
 
-export class Subsection {
+export class Topic {
   readonly chapterNum: ChapterNum;
 
   readonly partNum: PartNum;

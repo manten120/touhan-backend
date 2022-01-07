@@ -21,8 +21,8 @@ export class TopicORMEntity {
   @PrimaryColumn()
   subsection_num!: number;
 
-  @Column({ nullable: true })
-  title!: string;
+  @Column({ nullable: true, type: 'varchar' })
+  title!: string | null;
 
   @ManyToOne(() => ChapterORMEntity)
   @JoinColumn({ name: 'chapter_num', referencedColumnName: 'num' })
