@@ -14,9 +14,9 @@ export class Topic {
 
   readonly subsectionNum: SubsectionNum;
 
-  readonly topicChar: TopicChar;
+  readonly char: TopicChar;
 
-  readonly topicTitle: TopicTitle;
+  readonly title: TopicTitle;
 
   constructor(argsObj: {
     chapterNum: ChapterNum;
@@ -34,7 +34,7 @@ export class Topic {
     this.partNum = argsObj.partNum;
     this.sectionNum = argsObj.sectionNum;
     this.subsectionNum = argsObj.subsectionNum;
-    this.topicChar = argsObj.topicChar;
-    this.topicTitle = argsObj.topicTitle;
+    this.char = argsObj.topicChar;
+    this.title = argsObj.topicTitle;
   }
 }

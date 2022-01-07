@@ -21,8 +21,8 @@ export class SectionRepository implements ISectionRepository {
     const sectionData = new SectionORMEntity();
     sectionData.chapter_num = section.chapterNum.value;
     sectionData.part_num = section.partNum.value;
-    sectionData.num = section.sectionNum.value;
-    sectionData.title = section.sectionTitle.value;
+    sectionData.num = section.num.value;
+    sectionData.title = section.title.value;
 
     await sectionsTable.save(sectionData);
   };

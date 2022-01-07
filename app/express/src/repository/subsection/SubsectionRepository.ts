@@ -23,8 +23,8 @@ export class subsectionRepository implements ISubsectionRepository {
     subsectionData.chapter_num = subsection.chapterNum.value;
     subsectionData.part_num = subsection.partNum.value;
     subsectionData.section_num = subsection.sectionNum.value;
-    subsectionData.num = subsection.subsectionNum.value;
-    subsectionData.title = subsection.subsectionTitle.value;
+    subsectionData.num = subsection.num.value;
+    subsectionData.title = subsection.title.value;
 
     await subsectionsTable.save(subsectionData);
   };

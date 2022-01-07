@@ -8,9 +8,9 @@ export class Section {
 
   readonly partNum: PartNum;
 
-  readonly sectionNum: SectionNum;
+  readonly num: SectionNum;
 
-  readonly sectionTitle: SectionTitle;
+  readonly title: SectionTitle;
 
   constructor(argsObj: {
     chapterNum: ChapterNum;
@@ -24,7 +24,7 @@ export class Section {
 
     this.chapterNum = argsObj.chapterNum;
     this.partNum = argsObj.partNum;
-    this.sectionNum = argsObj.sectionNum;
-    this.sectionTitle = argsObj.sectionTitle;
+    this.num = argsObj.sectionNum;
+    this.title = argsObj.sectionTitle;
   }
 }

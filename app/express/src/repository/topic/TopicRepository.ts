@@ -25,8 +25,8 @@ export class topicRepository implements ITopicRepository {
     topicData.part_num = topic.partNum.value;
     topicData.section_num = topic.sectionNum.value;
     topicData.subsection_num = topic.subsectionNum.value;
-    topicData.char = topic.topicChar.value;
-    topicData.title = topic.topicTitle.value;
+    topicData.char = topic.char.value;
+    topicData.title = topic.title.value;
 
     await topicsTable.save(topicData);
   };
